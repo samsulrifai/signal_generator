@@ -59,6 +59,38 @@ This repository contains a Python script to generate trading signals for BTC/USD
    * BB\_PERIOD, BB\_STD
    * TP\_MULTIPLIER, CAPITAL, RISK\_PCT, BACKTEST\_LOOKBACK
 
+### Parameter Selection Guidelines
+
+Choosing optimal parameter values is key to signal reliability. Here’s how to determine yours:
+
+1. **Historical Backtesting**
+   Run systematic backtests over different parameter combinations (a grid search) to find settings that yield high win rates and acceptable drawdowns.
+
+   * Vary SMA periods (e.g. 20–200) and compare performance.
+   * Test RSI bounds (e.g. \[30–70], \[40–60]) to balance sensitivity vs. noise.
+
+2. **Market Regime Consideration**
+
+   * In trending markets, longer SMAs (100–300) reduce whipsaw.
+   * In range-bound markets, tighter BB\_STD (1–1.5) and shorter SMAs (20–50) capture reversals.
+
+3. **Risk Appetite & Timeframe**
+
+   * Higher timeframes (1h, 1d) tolerate wider SL/TP; lower timeframes (15m) need tighter stops.
+   * Adjust `RISK_PCT` (e.g. 0.5–2%) based on portfolio size and risk tolerance.
+
+4. **Adaptive Optimization**
+
+   * Periodically re-optimize parameters (weekly or monthly) to adapt to volatility shifts.
+   * Use walk-forward analysis: optimize on a training window, test on the next out-of-sample period.
+
+5. **Validation**
+
+   * Always test on fresh (unseen) data to avoid overfitting.
+   * Monitor live performance and compare to backtested metrics to validate stability.
+
+With these guidelines, you can tailor the bot to your trading style and the BTC/USDT market conditions.
+
 ## Usage
 
 Run the main script to fetch data from Binance, compute indicators, backtest, and send the signal via Telegram:
