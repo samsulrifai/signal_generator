@@ -27,7 +27,7 @@ This repository contains a Python script to generate trading signals for BTC/USD
 1. **Clone this repository**
 
    ```bash
-   git clone https://github.com/yourusername/your-repo.git
+   git clone https://github.com/samsulrifai/signal_generator.git
    cd your-repo
    ```
 2. **Create & activate a virtual environment** (recommended)
